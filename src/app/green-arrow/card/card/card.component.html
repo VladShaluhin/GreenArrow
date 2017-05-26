@@ -1,0 +1,9 @@
+<div class="widget">
+  <div class="widget__head">
+    <a class="widget__opener" (click)="toggle()">{{isExpanded ? '+' : '-'}}</a>
+    <ng-content select="ga-card-header"></ng-content>
+  </div>
+  <div class="widget__body" [gaCollapse]="isExpanded">
+    <ng-content select="ga-card-body"></ng-content>
+  </div>
+</div>

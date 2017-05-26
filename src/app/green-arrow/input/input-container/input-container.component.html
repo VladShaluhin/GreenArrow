@@ -1,0 +1,7 @@
+<div class="rel">
+  <ng-content></ng-content>
+  <div *ngIf="_isErrorState()">
+   {{error?.message}}
+  </div>
+</div>
+

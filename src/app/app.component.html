@@ -1,3 +1,51 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container leader">
+  <ga-card>
+    <ga-card-header>
+      Header
+    </ga-card-header>
+    <ga-card-body>
+      Body
+    </ga-card-body>
+  </ga-card>
+  <h1>
+    {{title}}
+  </h1>
+  <form [formGroup]="form" cdk-scrollable novalidate #f="ngForm" gaForm>
+    <h2>Select</h2>
+    <ga-input-container>
+      <ga-tag-select gaInput  formControlName="select">
+        <ga-tag-option [value]="10">10</ga-tag-option>
+        <ga-tag-option [value]="20">20</ga-tag-option>
+      </ga-tag-select>
+    </ga-input-container>
+
+    <h2>Multiselect</h2>
+    <ga-tag-select [multiple]="true" formControlName="multiselect">
+      <ga-tag-option [value]="10">10</ga-tag-option>
+      <ga-tag-option [value]="20">20</ga-tag-option>
+      <ga-tag-option [value]="30" >30</ga-tag-option>
+    </ga-tag-select>
+    <h2>Multiselect with drop</h2>
+    <ga-tag-select-with-drop formControlName="multiselectWithDrop" [multiple]="true">
+      <ga-tag-option *ngFor="let opt of options" [value]="opt">{{opt}}</ga-tag-option>
+      <ga-tag-optgroup>
+        <div [gaCollapse]="isCollapsed">
+          <ga-tag-option [value]="301">301</ga-tag-option>
+        </div>
+        <a (click)="isCollapsed = !isCollapsed">{{ isCollapsed ? 'view all' : 'close' }}</a>
+      </ga-tag-optgroup>
+    </ga-tag-select-with-drop>
+    <h2>Radio</h2>
+    <ga-radio-group formControlName="radioGroup">
+      <ga-radio-button value="OR">OR</ga-radio-button>
+      <ga-radio-button value="AND">AND</ga-radio-button>
+    </ga-radio-group>
+    <br>
+
+    {{form.value | json}}
+    <button>Submit</button>
+
+  </form>
+
+</div>
+

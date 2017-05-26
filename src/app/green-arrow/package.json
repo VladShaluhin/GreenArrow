@@ -1,0 +1,28 @@
+{
+  "name": "green-arrow",
+  "version": "0.0.12",
+  "main": "../../../dist/index",
+  "typings": "../../../dist/index",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/animations": "^4.0.0",
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/material": "^2.0.0-beta.3",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^2.1.4"
+  }
+}
