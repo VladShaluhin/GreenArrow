@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  InputContainerComponent, GaInputDirective, GaFormDirective
+  GaInputContainerComponent, GaInputDirective, GaFormDirective
 } from './input-container/input-container.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidationErrorService} from './validation-error.service';
@@ -16,8 +16,8 @@ export * from './input-container/input-container.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [InputContainerComponent, GaInputDirective, GaFormDirective],
-  exports: [InputContainerComponent, GaInputDirective, GaFormDirective],
+  declarations: [GaInputContainerComponent, GaInputDirective, GaFormDirective],
+  exports: [GaInputContainerComponent, GaInputDirective, GaFormDirective],
   providers: [
     ValidationErrorService
   ]

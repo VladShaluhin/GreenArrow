@@ -1,7 +1,7 @@
 <div class="rel">
   <ng-content></ng-content>
-  <div *ngIf="_isErrorState()">
+  <span *ngIf="_isErrorState()" class="validation-message">
    {{error?.message}}
-  </div>
+  </span>
 </div>
 

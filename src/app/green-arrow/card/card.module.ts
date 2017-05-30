@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GaCoreModule } from '../core/core.module';
-import { GaCardComponent } from './card/card.component';
-import { GaCardBodyComponent } from './card-body/card-body.component';
-import { GaCardHeaderComponent } from './card-header/card-header.component';
+import { GaCard, GaCardHeader, GaCardBody, GaCardTitle, GaRemoveButton } from './card.component';
 
 @NgModule({
   imports: [
     CommonModule,
     GaCoreModule
   ],
-  declarations: [GaCardComponent, GaCardBodyComponent, GaCardHeaderComponent],
-  exports: [GaCardComponent, GaCardBodyComponent, GaCardHeaderComponent]
+  declarations: [GaCard, GaCardBody, GaCardHeader, GaCardTitle, GaRemoveButton],
+  exports: [GaCard, GaCardBody, GaCardHeader, GaCardTitle, GaRemoveButton]
 })
 export class GaCardModule { }
