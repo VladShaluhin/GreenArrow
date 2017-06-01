@@ -1,7 +1,8 @@
 <div class="container leader">
   <ga-card>
     <ga-card-header>
-      Header
+      <ga-card-title>Header</ga-card-title>
+      <a class="glyphicon glyphicon-remove" ga-remove-button></a>
     </ga-card-header>
     <ga-card-body>
       Body
@@ -35,14 +36,24 @@
         <a (click)="isCollapsed = !isCollapsed">{{ isCollapsed ? 'view all' : 'close' }}</a>
       </ga-tag-optgroup>
     </ga-tag-select-with-drop>
-    <h2>Radio</h2>
+    <h2>Radio  <ga-tooltip icon="?">Within which timeperiod from current day and looking back should the audience have visited the domain?</ga-tooltip></h2>
+
     <ga-radio-group formControlName="radioGroup">
       <ga-radio-button value="OR">OR</ga-radio-button>
       <ga-radio-button value="AND">AND</ga-radio-button>
     </ga-radio-group>
     <br>
-
+    <textarea class="form-control"
+              rows="3"
+              gaParseInput
+              gaAutosize
+              #input="gaParseInput"
+              formControlName="parseInput"
+              (parsed)="log($event)"
+              [attr.placeholder]="placeholder"></textarea>
     {{form.value | json}}
+    <!--#input="gaParseInput"-->
+    <button type="button" (click)="log(input.parse())">Parse</button>
     <button>Submit</button>
 
   </form>

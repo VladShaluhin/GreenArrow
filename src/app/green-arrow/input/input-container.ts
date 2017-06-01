@@ -3,20 +3,14 @@ import {
   Component, ContentChild, Directive, ElementRef, OnInit, Optional, Self
 } from '@angular/core';
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { ValidationError } from '../validation-error.service';
-
-
-
-
-
-
+import { ValidationError } from './validation-error.service';
 
 
 @Directive({
   selector: '[gaForm]'
 })
-export class GaFormDirective implements OnInit {
-  private _containers: Set<GaInputContainerComponent> = new Set();
+export class GaForm implements OnInit {
+  private _containers: Set<GaInputContainer> = new Set();
 
   get form() {
     return this._parentFormGroup || this._parentForm;
@@ -27,7 +21,7 @@ export class GaFormDirective implements OnInit {
   }
 
 
-  register(container: GaInputContainerComponent) {
+  register(container: GaInputContainer) {
     this._containers.add(container);
   }
 
@@ -49,7 +43,7 @@ export class GaFormDirective implements OnInit {
 @Directive({
   selector: 'ga-tag-select[gaInput], ga-tag-select-with-drop[gaInput], input[gaInput], textarea[gaInput], select[gaInput]'
 })
-export class GaInputDirective {
+export class GaInput {
   constructor(
     private _element: ElementRef,
     @Optional() @Self() public _ngControl: NgControl
@@ -62,15 +56,15 @@ export class GaInputDirective {
 
 @Component({
   selector: 'ga-input-container',
-  templateUrl: './input-container.component.html',
-  styleUrls: ['./input-container.component.scss'],
+  templateUrl: './input-container.html',
+  styleUrls: ['./input-container.scss'],
   host: {
     '[class.has-error]': '_isErrorState()'
   }
 })
-export class GaInputContainerComponent implements AfterContentInit {
+export class GaInputContainer implements AfterContentInit {
 
-  @ContentChild(GaInputDirective) _gaInputChild: GaInputDirective;
+  @ContentChild(GaInput) _gaInputChild: GaInput;
 
   get error(): ValidationError|null {
     const control = this._gaInputChild._ngControl;
@@ -86,7 +80,7 @@ export class GaInputContainerComponent implements AfterContentInit {
   }
 
   constructor(
-    @Optional() private _parentForm: GaFormDirective
+    @Optional() private _parentForm: GaForm
   ) { }
 
 

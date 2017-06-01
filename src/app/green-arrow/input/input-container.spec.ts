@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputContainerComponent } from './input-container.component';
+import { InputContainerComponent } from './input-container';
 
 describe('InputContainerComponent', () => {
   let component: InputContainerComponent;

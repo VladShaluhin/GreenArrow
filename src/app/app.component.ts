@@ -43,7 +43,8 @@ export class AppComponent implements  AfterViewInit{
       select: ['', ValidationErrorService.getValidator(Validators.required, 'This field is required! ')],
       multiselect: [10],
       multiselectWithDrop: [options.slice(0, 2)],
-      radioGroup: 'OR'
+      radioGroup: 'OR',
+      parseInput: ''
     })
 
 
@@ -54,6 +55,10 @@ export class AppComponent implements  AfterViewInit{
     setInterval( _ => {
       this.options2 = [...options]
     })
+  }
+
+  log(...args) {
+    console.log(args);
   }
 
   ngAfterViewInit () {
