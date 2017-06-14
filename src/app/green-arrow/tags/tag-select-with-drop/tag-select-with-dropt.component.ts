@@ -106,73 +106,73 @@ export class GaTagSelectWithDropComponent implements OnInit {
 
 }
 
-
-@Component({
-  selector: 'ga-tag-dropdown',
-  template: `
-    <ng-template
-      cdk-connected-overlay
-      [origin]="origin"
-      [open]="dropdownOpen"
-      [positions]="_positions"
-      hasBackdrop
-      (backdropClick)="backdropClick.emit($event)"
-      [offsetY]="_offsetY"
-      [minWidth]="_triggerWidth"
-      (attach)="_onAttached()"
-      (detach)="_onDetach()"
-      backdropClass="cdk-overlay-transparent-backdrop">
-      <div class="tags__drop" [@transformDrop]="'showing'">
-        <div class="tags__wrapper">
-          <ga-tag-option ngFor="let opt of optionsAsync | async"></ga-tag-option>
-          <ng-content></ng-content>
-        </div>
-      </div>
-    </ng-template>
-  `
-})
-export class GaTagDropdownComponent {
-  private _scrollSubscription: Subscription;
-
-  @Input() dropdownOpen: boolean =  false;
-  @Input() origin: any;
-  @ViewChild(ConnectedOverlayDirective) overlayDir: ConnectedOverlayDirective;
-
-  @Output() backdropClick = new EventEmitter();
-
-  _positions = [
-    {
-      originX: 'start',
-      originY: 'top',
-      overlayX: 'start',
-      overlayY: 'top',
-    },
-    {
-      originX: 'start',
-      originY: 'bottom',
-      overlayX: 'start',
-      overlayY: 'bottom',
-    },
-  ];
-  _offsetY = 0;
-  _triggerWidth = 0;
-
-  constructor(
-    private _scrollDispatcher: ScrollDispatcher,
-  ) {}
-
-  _onAttached() {
-    if (!this._scrollSubscription) {
-      this._scrollSubscription = this._scrollDispatcher.scrolled(null, () => {
-        const overlayRef = this.overlayDir.overlayRef;
-        overlayRef.updatePosition();
-      });
-    }
-  }
-
-  _onDetach() {
-    this._scrollSubscription.unsubscribe();
-    this._scrollSubscription = null;
-  }
-
-}
+//
+// @Component({
+//   selector: 'ga-tag-dropdown',
+//   template: `
+//     <ng-template
+//       cdk-connected-overlay
+//       [origin]="origin"
+//       [open]="dropdownOpen"
+//       [positions]="_positions"
+//       hasBackdrop
+//       (backdropClick)="backdropClick.emit($event)"
+//       [offsetY]="_offsetY"
+//       [minWidth]="_triggerWidth"
+//       (attach)="_onAttached()"
+//       (detach)="_onDetach()"
+//       backdropClass="cdk-overlay-transparent-backdrop">
+//       <div class="tags__drop" [@transformDrop]="'showing'">
+//         <div class="tags__wrapper">
+//           <ga-tag-option ngFor="let opt of optionsAsync | async"></ga-tag-option>
+//           <ng-content></ng-content>
+//         </div>
+//       </div>
+//     </ng-template>
+//   `
+// })
+// export class GaTagDropdownComponent {
+//   private _scrollSubscription: Subscription;
+//
+//   @Input() dropdownOpen: boolean =  false;
+//   @Input() origin: any;
+//   @ViewChild(ConnectedOverlayDirective) overlayDir: ConnectedOverlayDirective;
+//
+//   @Output() backdropClick = new EventEmitter();
+//
+//   _positions = [
+//     {
+//       originX: 'start',
+//       originY: 'top',
+//       overlayX: 'start',
+//       overlayY: 'top',
+//     },
+//     {
+//       originX: 'start',
+//       originY: 'bottom',
+//       overlayX: 'start',
+//       overlayY: 'bottom',
+//     },
+//   ];
+//   _offsetY = 0;
+//   _triggerWidth = 0;
+//
+//   constructor(
+//     private _scrollDispatcher: ScrollDispatcher,
+//   ) {}
+//
+//   _onAttached() {
+//     if (!this._scrollSubscription) {
+//       this._scrollSubscription = this._scrollDispatcher.scrolled(null, () => {
+//         const overlayRef = this.overlayDir.overlayRef;
+//         overlayRef.updatePosition();
+//       });
+//     }
+//   }
+//
+//   _onDetach() {
+//     this._scrollSubscription.unsubscribe();
+//     this._scrollSubscription = null;
+//   }
+//
+// }

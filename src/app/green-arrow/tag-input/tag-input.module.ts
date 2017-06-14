@@ -5,18 +5,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GaCoreModule } from '../core/core.module';
 
-import { GaTagSelectWithDropComponent} from './tag-select-with-drop/tag-select-with-dropt.component';
-import { GaTagSelectComponent } from './tag-select/tag-select.component';
-import { GaTagSelectDirective } from './tag-select.directive';
-import { GaTagOptgroupComponent } from './tag-optgroup/tag-optgroup.component';
+import { GaTagInputComponent, GaTagInputTrigger } from './components/tag-input.component';
+import { GaAutocompleteComponent } from './components/auto-complete.component';
 
 const TAGS_COMPONENTS = [
-  GaTagSelectWithDropComponent,
-  GaTagSelectComponent,
-  GaTagSelectDirective,
-  GaTagOptgroupComponent,
+  GaTagInputComponent,
+  GaTagInputTrigger,
+  GaAutocompleteComponent
 ];
 
+export * from './lib/auto-complete-source';
+export * from './lib/local.auto-complete-source';
+export * from './components/auto-complete.component';
 
 @NgModule({
   imports: [
@@ -33,4 +33,4 @@ const TAGS_COMPONENTS = [
     ScrollDispatcher
   ]
 })
-export class GaTagsModule { }
+export class GaTagInputModule { }

@@ -1,9 +1,9 @@
 <div class="tags"  #trigger cdk-overlay-origin  #origin="cdkOverlayOrigin" >
   <div class="tags__result" (click)="onToggle($event)">
-    <ga-tag-option  *ngFor="let opt of selection" [value]="opt.value" >
+    <ga-option  *ngFor="let opt of selection" [value]="opt.value" >
       {{ opt.viewValue }}
       <span class="tags__remove glyphicon glyphicon-remove" (click)="opt.toggle()"></span>
-    </ga-tag-option>
+    </ga-option>
     <a class="glyphicon  tags__chevron"
       [ngClass]="{'glyphicon-chevron-down': !isExpanded, 'glyphicon-chevron-up': isExpanded}">
     </a>

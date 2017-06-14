@@ -8,30 +8,28 @@
       Body
     </ga-card-body>
   </ga-card>
-  <h1>
-    {{title}}
-  </h1>
-  <form [formGroup]="form" cdk-scrollable novalidate #f="ngForm" gaForm>
+  <h1>{{title}} </h1>
+  <form [formGroup]="form" novalidate #f="ngForm" gaForm>
     <h2>Select</h2>
     <ga-input-container>
       <ga-tag-select gaInput  formControlName="select">
-        <ga-tag-option [value]="10">10</ga-tag-option>
-        <ga-tag-option [value]="20">20</ga-tag-option>
+        <ga-option [value]="10">10</ga-option>
+        <ga-option [value]="20">20</ga-option>
       </ga-tag-select>
     </ga-input-container>
 
     <h2>Multiselect</h2>
     <ga-tag-select [multiple]="true" formControlName="multiselect">
-      <ga-tag-option [value]="10">10</ga-tag-option>
-      <ga-tag-option [value]="20">20</ga-tag-option>
-      <ga-tag-option [value]="30" >30</ga-tag-option>
+      <ga-option [value]="10">10</ga-option>
+      <ga-option [value]="20">20</ga-option>
+      <ga-option [value]="30" >30</ga-option>
     </ga-tag-select>
     <h2>Multiselect with drop</h2>
     <ga-tag-select-with-drop formControlName="multiselectWithDrop" [multiple]="true">
-      <ga-tag-option *ngFor="let opt of options" [value]="opt">{{opt}}</ga-tag-option>
+      <ga-option *ngFor="let opt of options" [value]="opt">{{opt}}</ga-option>
       <ga-tag-optgroup>
         <div [gaCollapse]="isCollapsed">
-          <ga-tag-option [value]="301">301</ga-tag-option>
+          <ga-option [value]="301">301</ga-option>
         </div>
         <a (click)="isCollapsed = !isCollapsed">{{ isCollapsed ? 'view all' : 'close' }}</a>
       </ga-tag-optgroup>
@@ -51,12 +49,18 @@
               formControlName="parseInput"
               (parsed)="log($event)"
               [attr.placeholder]="placeholder"></textarea>
+
+    <ga-tag-input >
+      <ga-tag-input-autocomplete [source]="autocompleteSource"></ga-tag-input-autocomplete>
+    </ga-tag-input>
+
     {{form.value | json}}
-    <!--#input="gaParseInput"-->
+
     <button type="button" (click)="log(input.parse())">Parse</button>
     <button>Submit</button>
+
 
   </form>
 
 </div>
-
+<!--<ga-tag-input > </ga-tag-input>-->

@@ -1,0 +1,17 @@
+<ng-template
+  cdk-connected-overlay
+  [origin]="origin"
+  [open]="panelOpen"
+  positionY="below"
+  hasBackdrop
+  (backdropClick)="close()"
+  [minWidth]="minWidth"
+  (attach)="_onAttached()"
+  (detach)="_onDetach()"
+  backdropClass="cdk-overlay-transparent-backdrop">
+  <div class="tags__drop">
+    <div class="tags__wrapper">
+      <ga-option *ngFor="let el of elements" [value]="el" (click)="selection$.next(el)">{{el}}</ga-option>
+    </div>
+  </div>
+</ng-template>

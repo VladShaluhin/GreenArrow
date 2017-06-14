@@ -1,0 +1,12 @@
+<script src="tag-input.component.ts"></script>
+<div class="tags" #trigger cdk-overlay-origin #origin="cdkOverlayOrigin">
+  <div class="tags__result">
+    <ga-option  *ngFor="let opt of selected" [value]="opt" (click)="remove(opt)">
+      {{ opt }}
+      <span class="tags__remove glyphicon glyphicon-remove"></span>
+    </ga-option>
+    <div class="tags__input-wrap">
+      <input type="text" class="form-control tags__input" gaFocus="isTriggerFocused" ga-tag-input-trigger>
+    </div>
+  </div>
+</div>

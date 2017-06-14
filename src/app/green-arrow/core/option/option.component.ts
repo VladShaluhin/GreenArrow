@@ -1,19 +1,19 @@
 import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
 export class MdOptionSelectionChange {
-  constructor(public source: GaTagOptionComponent, public isUserInput = false) { }
+  constructor(public source: GaOptionComponent, public isUserInput = false) { }
 }
 
 
 @Component({
-  selector: 'ga-tag-option',
-  templateUrl: './tag-option.component.html',
-  styleUrls: ['./tag-option.component.scss'],
+  selector: 'ga-option',
+  templateUrl: 'option.component.html',
+  styleUrls: ['option.component.scss'],
   host: {
     '(click)': 'toggle()',
   }
 })
-export class GaTagOptionComponent {
+export class GaOptionComponent {
 
   private _selected: boolean = false;
 

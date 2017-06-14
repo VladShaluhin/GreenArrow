@@ -21,8 +21,18 @@ export  class SelectionModel<T> {
   onChange: Subject<SelectionChange<T>> =  new Subject();
 
   constructor(
-    private _isMulti = false
-  ) { }
+    private _isMulti = false,
+    initiallySelectedValues?: T[],
+  ) {
+    if (initiallySelectedValues) {
+      if (_isMulti) {
+        initiallySelectedValues.forEach(value => this._markSelected(value));
+      } else {
+        this._markSelected(initiallySelectedValues[0]);
+      }
+    }
+    this._selectedToEmit.length = 0;
+  }
 
   isSelected(value: T): boolean {
     return this._selection.has(value);
@@ -34,6 +44,7 @@ export  class SelectionModel<T> {
 
   select(value: T): void {
     this._markSelected(value);
+    console.log(`value: ${value}`)
     this._emitChangeEvent();
   }
 

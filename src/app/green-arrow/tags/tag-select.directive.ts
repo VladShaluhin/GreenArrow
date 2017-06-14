@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { SelectionModel } from '../core/core.module';
-import { GaTagOptionComponent } from './tag-option/tag-option.component';
+import { GaOptionComponent } from '../core/core.module';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -30,9 +30,9 @@ export class GaTagSelectDirective  implements AfterContentInit, ControlValueAcce
 
   _onChange = (_: any) => {};
   _onTouched = () => {};
-  _selectionModel: SelectionModel<GaTagOptionComponent>;
+  _selectionModel: SelectionModel<GaOptionComponent>;
 
-  @ContentChildren(GaTagOptionComponent, {descendants: true}) options: QueryList<GaTagOptionComponent>;
+  @ContentChildren(GaOptionComponent, {descendants: true}) options: QueryList<GaOptionComponent>;
 
   @Input() multiple: boolean = false;
   @Output() change: EventEmitter<SelectChange> = new EventEmitter<SelectChange>();
@@ -62,10 +62,10 @@ export class GaTagSelectDirective  implements AfterContentInit, ControlValueAcce
   }
 
   ngOnInit() {
-    this._selectionModel = new SelectionModel<GaTagOptionComponent>(this.multiple);
+    this._selectionModel = new SelectionModel<GaOptionComponent>(this.multiple);
     this._selectionModel.onChange.subscribe((event) => {
-      event.added.forEach((opt:GaTagOptionComponent) => opt.select());
-      event.removed.forEach((opt:GaTagOptionComponent) => opt.deselect());
+      event.added.forEach((opt:GaOptionComponent) => opt.select());
+      event.removed.forEach((opt:GaOptionComponent) => opt.deselect());
     });
   }
 
@@ -95,9 +95,7 @@ export class GaTagSelectDirective  implements AfterContentInit, ControlValueAcce
     const optionSelectionChanges = Observable.merge(...this.options.map(option => option.onSelectionChange));
     this._optionSubscription = optionSelectionChanges
       .filter((event: any) => event.isUserInput)
-      .subscribe(event => {
-        this._onSelect(event.source);
-      });
+      .subscribe(event => this._onSelect(event.source));
   }
 
 
@@ -123,7 +121,7 @@ export class GaTagSelectDirective  implements AfterContentInit, ControlValueAcce
     this._disabled = isDisabled;
   }
 
-  _getOption(value):  GaTagOptionComponent|null {
+  _getOption(value): GaOptionComponent|null {
     const optionsArray = this.options.toArray();
     return optionsArray.find(option => option.value === value) || null;
   }
@@ -137,7 +135,7 @@ export class GaTagSelectDirective  implements AfterContentInit, ControlValueAcce
     }
   }
 
-  _selectValue(value):  GaTagOptionComponent|null {
+  _selectValue(value): GaOptionComponent|null {
     let correspondingOption = this._getOption(value);
     if (correspondingOption) {
       this._selectionModel.select(correspondingOption);

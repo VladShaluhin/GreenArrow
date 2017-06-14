@@ -1,0 +1,47 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let column of grid.getColumns()">
+        <ga-table-title [column]="column" [source]="source"></ga-table-title>
+      </th>
+      <th *ngIf="grid.getSettings('removable')"></th>
+    </tr>
+  </thead>
+  <tbody  *ngFor="let row of grid.getRows()">
+    <tr *ngIf="!isInLoading(row.getData())">
+      <ng-template [ngIf]="row.valid">
+        <td *ngFor="let cell of row.getCells()">
+          <ga-table-cell [cell]="cell" [isInEditing]="row.isInEditing"></ga-table-cell>
+        </td>
+        <td *ngIf="grid.getSettings('removable') || grid.getSettings('editable')">
+          <ul class="tools tools--in-table">
+
+            <ng-template [ngIf]="grid.getSettings('editable')">
+              <li *ngIf="!row.isInEditing"><a class="glyphicon glyphicon-pencil" (click)="onEdit(row)"></a></li>
+              <li *ngIf="row.isInEditing"><a class="glyphicon glyphicon-ok" (click)="onSave(row)" ></a></li>
+            </ng-template>
+            <li *ngIf="grid.getSettings('removable')"><a class="glyphicon glyphicon-remove" (click)="onRemove(row)"></a></li>
+          </ul>
+        </td>
+      </ng-template>
+      <ng-template [ngIf]="row.invalid">
+        <td [attr.colspan]="row.length">
+          <ga-table-cell [cell]="row.invalidCell" [isInEditing]="row.isInEditing"></ga-table-cell>
+        </td>
+        <td>
+          <ul class="tools tools--in-table">
+            <li><a class="glyphicon glyphicon-ok" (click)="onSave(row)" ></a></li>
+            <li *ngIf="grid.getSettings('removable')"><a class="glyphicon glyphicon-remove" (click)="onRemove(row)"></a></li>
+          </ul>
+        </td>
+      </ng-template>
+    </tr>
+    <tr *ngIf="isInLoading(row.getData())">
+      <td colspan="42">
+        <div class="loader__cell">
+          <div class="loader__wrapper"><div class="loader">Loading...</div></div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
