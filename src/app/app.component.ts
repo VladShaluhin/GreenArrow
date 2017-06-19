@@ -44,12 +44,8 @@ export class AppComponent implements  AfterViewInit{
 
   options = options;
   autocompleteSource = new GaLocalAutocompleteSource(autocomplete)
+  tagInputValue = ['test1', 'ololo'];
 
-
-  get test() {
-    console.log(11111)
-    return 2;
-  }
 
   constructor(
     private  _fb: FormBuilder

@@ -7,17 +7,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, DefaultValueAccessor } from '@
 
 const CUSTOM_INPUT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => CustomInputDirective),
+  useExisting: forwardRef(() => GaCustomInputDirective),
   multi: true
 };
 
 const SELECTABLE_TYPES = /text|password|search|tel|url/;
 
 @Directive({
-  selector: '[customInput]',
+  selector: '[GaCustomInput]',
   providers: [CUSTOM_INPUT_VALUE_ACCESSOR]
 })
-export class CustomInputDirective extends DefaultValueAccessor implements ControlValueAccessor, OnInit {
+export class GaCustomInputDirective extends DefaultValueAccessor implements ControlValueAccessor, OnInit {
   private _element: any;
   private _render: any;
   private _modelValue: any = null;

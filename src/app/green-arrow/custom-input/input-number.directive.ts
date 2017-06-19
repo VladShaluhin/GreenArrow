@@ -1,18 +1,18 @@
 import {
   Directive, HostListener, Optional, Host, Input
 } from '@angular/core';
-import { CustomInputDirective } from '../custom-input/custom-input.directive';
+import { GaCustomInputDirective } from '../custom-input/custom-input.directive';
 
 
 
 @Directive({
-  selector: 'input[customInput=number]'
+  selector: 'input[GaCustomInput=number]'
 })
-export class InputNumberDirective {
+export class GaInputNumberDirective {
   dotLast: boolean = false;
   @Input() min: number = Number.NEGATIVE_INFINITY;
   constructor(
-    @Optional() @Host() protected _customInput: CustomInputDirective
+    @Optional() @Host() protected _customInput: GaCustomInputDirective
   ) {}
 
 

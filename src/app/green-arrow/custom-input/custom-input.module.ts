@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CustomInputDirective } from './custom-input.directive';
-import { InputNumberDirective } from './input-number.directive';
-import { InputLocalNumberDirective } from './input-local-number.directive';
+import { GaCustomInputDirective } from './custom-input.directive';
+import { GaInputNumberDirective } from './input-number.directive';
+import { GaInputLocalNumberDirective } from './input-local-number.directive';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 export const CUSTOM_INPUTS = [
-  CustomInputDirective,
-  InputNumberDirective,
-  InputLocalNumberDirective,
+  GaCustomInputDirective,
+  GaInputNumberDirective,
+  GaInputLocalNumberDirective,
 ];
 
 @NgModule({

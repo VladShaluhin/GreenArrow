@@ -9,6 +9,9 @@ export { FormArrayDataSource } from './lib/data-source/form-array/form-array.dat
 export { LocalDataSource } from './lib/data-source/local/local.data-source';
 export { ASC, DESC } from './lib/sorting';
 
+export * from './lib/data-source/form-array/form-array.data.source';
+export * from './lib/data-source/local/local.data-source';
+
 export const DATA_TABLE = [
   DataTableComponent,
   TitleComponent,

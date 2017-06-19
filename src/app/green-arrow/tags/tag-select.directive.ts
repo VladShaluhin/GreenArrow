@@ -17,7 +17,8 @@ export class SelectChange {
   exportAs: 'tagSelect',
   host: {
     '[attr.tabindex]': 'tabIndex',
-    '(click)': '_focusHost()'
+    '(click)': '_focusHost()',
+    '[class.disabled]': '_disabled'
   }
 })
 export class GaTagSelectDirective  implements AfterContentInit, ControlValueAccessor, OnInit {
@@ -63,10 +64,11 @@ export class GaTagSelectDirective  implements AfterContentInit, ControlValueAcce
 
   ngOnInit() {
     this._selectionModel = new SelectionModel<GaOptionComponent>(this.multiple);
-    this._selectionModel.onChange.subscribe((event) => {
-      event.added.forEach((opt:GaOptionComponent) => opt.select());
-      event.removed.forEach((opt:GaOptionComponent) => opt.deselect());
-    });
+    this._selectionModel.onChange
+      .subscribe((event) => {
+        event.added.forEach((opt:GaOptionComponent) => opt.select());
+        event.removed.forEach((opt:GaOptionComponent) => opt.deselect());
+      });
   }
 
 
@@ -119,6 +121,10 @@ export class GaTagSelectDirective  implements AfterContentInit, ControlValueAcce
 
   setDisabledState(isDisabled: boolean) {
     this._disabled = isDisabled;
+    this.options.forEach(option => {
+      option.disabled = isDisabled;
+    });
+
   }
 
   _getOption(value): GaOptionComponent|null {

@@ -47,7 +47,7 @@ export class GaTagInputComponent implements OnInit, ControlValueAccessor, AfterV
   _onTouched = () => {};
   _selectionModel: SelectionModel<GaOptionComponent>  = new SelectionModel<GaOptionComponent>(true);
 
-  selection: any[] = [];
+
   isTriggerFocused: boolean = false;
 
   @Input()
@@ -107,7 +107,8 @@ export class GaTagInputComponent implements OnInit, ControlValueAccessor, AfterV
 
   /** Emits change event to set the model value. */
   private _propagateChanges(): void {
-    const selected =  this.selected.map(option => option.value);
+    const selected =  this.selected.map(option => option);
+
     this._onChange(selected);
   }
 
@@ -118,20 +119,25 @@ export class GaTagInputComponent implements OnInit, ControlValueAccessor, AfterV
   }
 
 
+  onClick({target}) {
+    if (!target.closest('ga-tag-option') ) {
+      console.log('focus input', !target.closest('ga-tag-option'))
+      this.isTriggerFocused = true;
+    }
+  }
 
   writeValue(value: any): void {
     this._setSelectionByValue(value);
   }
 
   _setSelectionByValue(value) {
-    const isArray = Array.isArray(value);
-    if (isArray) {
+    if (!value) {
+      this._selectionModel.clear();
+    } else if (Array.isArray(value)) {
       value.forEach((currentValue: any) => (this._selectionModel.select(currentValue)));
     } else {
       this._selectionModel.select(value)
     }
-    console.log(value);
-
   }
 
   registerOnChange(fn: (value: any) => void): void {

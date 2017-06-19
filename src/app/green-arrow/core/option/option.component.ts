@@ -20,6 +20,8 @@ export class GaOptionComponent {
   get selected(): boolean { return this._selected; }
 
   @Input() value: any;
+  @Input() disabled: boolean = false;
+
   @Output() onSelectionChange = new EventEmitter<any>();
 
 
@@ -33,7 +35,9 @@ export class GaOptionComponent {
   }
 
   toggle() {
-    this._emitSelectionChangeEvent(true);
+    if (!this.disabled) {
+      this._emitSelectionChangeEvent(true);
+    }
   }
 
 

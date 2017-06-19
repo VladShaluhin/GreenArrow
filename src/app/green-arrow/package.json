@@ -1,6 +1,6 @@
 {
   "name": "green-arrow",
-  "version": "0.0.17",
+  "version": "0.0.24",
   "main": "../../../dist/index",
   "typings": "../../../dist/index",
   "repository": {

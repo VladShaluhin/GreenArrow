@@ -6,8 +6,6 @@ import { Grid }from './lib/grid';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 import { Row } from './lib/data-set/row';
 import { ColComponent } from './components/col.component';
-import { Observable } from 'rxjs';
-
 
 
 @Component({

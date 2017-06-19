@@ -1,16 +1,16 @@
 import {
   Directive, HostListener, Optional, Host, LOCALE_ID, Inject, Input
 } from '@angular/core';
-import { CustomInputDirective } from '../custom-input/custom-input.directive';
-import { InputNumberDirective } from './input-number.directive';
+import { GaCustomInputDirective } from '../custom-input/custom-input.directive';
+import { GaInputNumberDirective } from './input-number.directive';
 
 @Directive({
-  selector: 'input[customInput=localNumber]'
+  selector: 'input[GaCustomInput=localNumber]'
 })
-export class InputLocalNumberDirective extends InputNumberDirective {
+export class GaInputLocalNumberDirective extends GaInputNumberDirective {
   @Input() min;
   constructor(
-    @Optional() @Host() _customInput: CustomInputDirective,
+    @Optional() @Host() _customInput: GaCustomInputDirective,
     @Inject(LOCALE_ID) private _locale
   ) {
     super(_customInput);
