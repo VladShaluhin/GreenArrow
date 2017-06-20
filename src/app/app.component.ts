@@ -65,11 +65,16 @@ export class AppComponent implements  AfterViewInit{
       multiselectWithDrop: [options.slice(0, 2)],
       radioGroup: 'OR',
       parseInput: '',
-      tagInput: [['test1']]
+      tagInput: [['test1']],
+      tagInputDisabled: [['test1']]
     });
+    this.form.get('tagInputDisabled').disable()
+
   }
 
 
   ngAfterViewInit () {
+
+    console.log()
   }
 }

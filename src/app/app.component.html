@@ -19,13 +19,6 @@
     </ga-input-container>
 
 
-    <ga-input-container>
-      <ga-tag-select  gaInput formControlName="select">
-        <ga-option [value]="10">10</ga-option>
-        <ga-option [value]="20">20</ga-option>
-      </ga-tag-select>
-    </ga-input-container>
-
     <h2>Multiselect</h2>
     <ga-tag-select [multiple]="true" formControlName="multiselect">
       <ga-option [value]="10">10</ga-option>
@@ -73,6 +66,13 @@
     <h2>Tag input</h2>
 
     <ga-tag-input [(ngModel)]="tagInputValue" [ngModelOptions]="{standalone: true}">
+      <ga-tag-input-autocomplete [source]="autocompleteSource"></ga-tag-input-autocomplete>
+    </ga-tag-input>
+
+
+    <h2>Tag input disabled</h2>
+
+    <ga-tag-input formControlName="tagInputDisabled">
       <ga-tag-input-autocomplete [source]="autocompleteSource"></ga-tag-input-autocomplete>
     </ga-tag-input>
 

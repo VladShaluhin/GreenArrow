@@ -44,7 +44,6 @@ export  class SelectionModel<T> {
 
   select(value: T): void {
     this._markSelected(value);
-    console.log(`value: ${value}`)
     this._emitChangeEvent();
   }
 

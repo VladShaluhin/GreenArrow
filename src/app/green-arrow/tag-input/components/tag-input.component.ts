@@ -35,7 +35,10 @@ export class GaTagInputTrigger {
 
 @Component({
   selector: 'ga-tag-input',
-  templateUrl: 'tag-input.component.html'
+  templateUrl: 'tag-input.component.html',
+  host: {
+    '[class.disabled]': '_disabled'
+  }
 })
 export class GaTagInputComponent implements OnInit, ControlValueAccessor, AfterViewInit {
   private _tabIndex: number;
@@ -79,22 +82,25 @@ export class GaTagInputComponent implements OnInit, ControlValueAccessor, AfterV
   }
 
   ngAfterViewInit() {
-    Promise.resolve(null).then(() => {
-      this.autocomplete.origin = this;
-      this.autocomplete.minWidth = this._getTriggerRect().width;
-    });
-
-    this.trigger.termChange
-      .filter(term => term.length > 2)
-      .switchMap(term => this.autocomplete.getSuggestion(term, this.selected))
-      .subscribe(item => {
-
-        if (item) {
-          this.trigger.clean();
-          this._onSelect(item);
-        }
-        this.isTriggerFocused = true;
+    if (this.trigger) {
+      Promise.resolve(null).then(() => {
+        this.autocomplete.origin = this;
+        this.autocomplete.minWidth = this._getTriggerRect().width;
       });
+
+      this.trigger.termChange
+        .filter(term => term.length > 2)
+        .switchMap(term => this.autocomplete.getSuggestion(term, this.selected))
+        .subscribe(item => {
+
+          if (item) {
+            this.trigger.clean();
+            this._onSelect(item);
+          }
+          this.isTriggerFocused = true;
+        });
+    }
+
   }
 
   _onSelect(option){
@@ -114,14 +120,15 @@ export class GaTagInputComponent implements OnInit, ControlValueAccessor, AfterV
 
 
   remove(option) {
-    this._selectionModel.deselect(option);
-    this._propagateChanges();
+    if (!this._disabled) {
+      this._selectionModel.deselect(option);
+      this._propagateChanges();
+    }
   }
 
 
   onClick({target}) {
     if (!target.closest('ga-tag-option') ) {
-      console.log('focus input', !target.closest('ga-tag-option'))
       this.isTriggerFocused = true;
     }
   }
@@ -140,6 +147,10 @@ export class GaTagInputComponent implements OnInit, ControlValueAccessor, AfterV
     }
   }
 
+  setDisabledState(isDisabled: boolean) {
+    this._disabled = isDisabled;
+  }
+
   registerOnChange(fn: (value: any) => void): void {
     this._onChange = fn;
   }
@@ -148,9 +159,9 @@ export class GaTagInputComponent implements OnInit, ControlValueAccessor, AfterV
     this._onTouched = fn;
   }
 
-  private _focusHost(): void {
-    this.elementRef.nativeElement.focus();
-  }
+  // private _focusHost(): void {
+  //   this.elementRef.nativeElement.focus();
+  // }
 
   private _getTriggerRect(): ClientRect {
     return this.elementRef.nativeElement.getBoundingClientRect();
