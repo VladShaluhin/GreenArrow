@@ -84,6 +84,11 @@ export class GaTagSelectDirective  implements AfterContentInit, ControlValueAcce
   private _resetOptions(): void {
     this._dropSubscriptions();
     this._listenToOptions();
+
+    this.options.forEach(option => {
+      option.disabled = this._disabled;
+    });
+
   }
 
   _dropSubscriptions() {
@@ -121,9 +126,6 @@ export class GaTagSelectDirective  implements AfterContentInit, ControlValueAcce
 
   setDisabledState(isDisabled: boolean) {
     this._disabled = isDisabled;
-    this.options.forEach(option => {
-      option.disabled = isDisabled;
-    });
 
   }
 

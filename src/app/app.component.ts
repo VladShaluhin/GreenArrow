@@ -46,6 +46,14 @@ export class AppComponent implements  AfterViewInit{
   autocompleteSource = new GaLocalAutocompleteSource(autocomplete)
   tagInputValue = ['test1', 'ololo'];
 
+  tableSource = [
+    {name: 'Default dummy job', owner: {userName: 'Test'}, createdTime: '2017-06-19 08:17:30', id:  'id_1'},
+    {name: 'Job2', owner: {userName: 'Test'}, createdTime: '2017-06-19 16:14:36', id:  'id_2'},
+    {name: 'Job3', owner: {userName: 'Test'}, createdTime: '2017-06-12 04:17:30', id:  'id_3'},
+    {name: 'Job4', owner: {userName: 'Test'}, createdTime: '2017-06-19 09:46:30', id:  'id_4'},
+  ];
+
+
 
   constructor(
     private  _fb: FormBuilder
@@ -59,11 +67,6 @@ export class AppComponent implements  AfterViewInit{
       parseInput: '',
       tagInput: [['test1']]
     });
-
-    setTimeout(_ => {
-      this.options = options.slice(0, -1)
-    }, 5000)
-
   }
 
 

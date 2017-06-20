@@ -20,7 +20,7 @@
 
 
     <ga-input-container>
-      <ga-tag-select   formControlName="select">
+      <ga-tag-select  gaInput formControlName="select">
         <ga-option [value]="10">10</ga-option>
         <ga-option [value]="20">20</ga-option>
       </ga-tag-select>
@@ -32,7 +32,9 @@
       <ga-option [value]="20">20</ga-option>
       <ga-option [value]="30" >30</ga-option>
     </ga-tag-select>
+
     <h2>Multiselect with drop</h2>
+
     <ga-tag-select-with-drop formControlName="multiselectWithDrop" [multiple]="true">
       <ga-option *ngFor="let opt of options" [value]="opt">{{opt}}</ga-option>
       <ga-tag-optgroup>
@@ -42,6 +44,8 @@
         <a (click)="isCollapsed = !isCollapsed">{{ isCollapsed ? 'view all' : 'close' }}</a>
       </ga-tag-optgroup>
     </ga-tag-select-with-drop>
+
+
     <h2>Radio  <ga-tooltip icon="?">Within which timeperiod from current day and looking back should the audience have visited the domain?</ga-tooltip></h2>
 
     <ga-radio-group formControlName="radioGroup">
@@ -49,6 +53,9 @@
       <ga-radio-button value="AND">AND</ga-radio-button>
     </ga-radio-group>
     <br>
+
+    <h2>Parse input</h2>
+
     <textarea class="form-control"
               rows="3"
               gaParseInput
@@ -58,18 +65,37 @@
               (parsed)="log($event)"
               [attr.placeholder]="placeholder"></textarea>
 
+
+
+    <button type="button" (click)="input.parse()">Parse</button>
+
+
+    <h2>Tag input</h2>
+
     <ga-tag-input [(ngModel)]="tagInputValue" [ngModelOptions]="{standalone: true}">
       <ga-tag-input-autocomplete [source]="autocompleteSource"></ga-tag-input-autocomplete>
     </ga-tag-input>
-    {{tagInputValue | json}}
 
-    {{form.value | json}}
 
-    <button type="button" (click)="log(input.parse())">Parse</button>
     <button>Submit</button>
-
 
   </form>
 
+
+  <h2> Data table</h2>
+
+  <ga-data-table [source]="tableSource">
+    <ga-table-col id="name" title="Job name"></ga-table-col>
+    <ga-table-col id="owner" title="Owner name" [compareFunction]="ownerCompareFunction">
+      <ng-template #default let-value="value">{{value?.userName}}</ng-template>
+    </ga-table-col>
+    <ga-table-col id="createdTime" title="Created time" [sortDirection]="'asc'" ></ga-table-col>
+    <ga-table-col id="id" [sort]="false">
+      <ng-template #default let-value="value"><strong>{{value}}</strong></ng-template>
+    </ga-table-col>
+  </ga-data-table>
+
+  <h2> Custom input</h2>
+  <input GaCustomInput="localNumber" [min]="10"  class="form-control">
+
 </div>
-<!--<ga-tag-input > </ga-tag-input>-->
