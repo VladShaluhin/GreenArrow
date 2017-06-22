@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Self, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Self, ViewChild } from '@angular/core';
 import { GaTagSelectDirective } from '../tag-select.directive';
 import { transformDrop } from './drop-animation'
 import { ScrollDispatcher, ConnectedOverlayDirective } from '@angular/material';
@@ -38,6 +38,10 @@ export class GaTagSelectWithDropComponent implements OnInit {
     return this._tagSelect ? this._tagSelect.selected : [];
   }
 
+  get disabled() {
+    return this._tagSelect && this._tagSelect._disabled;
+  }
+
   @ViewChild('trigger') trigger: ElementRef;
   @ViewChild(ConnectedOverlayDirective) overlayDir: ConnectedOverlayDirective;
 
@@ -52,13 +56,13 @@ export class GaTagSelectWithDropComponent implements OnInit {
 
     this._tagSelect.change
       .do(_ => this._focusHost())
-      .subscribe(_ => {
+      .subscribe(() => {
         this.close();
       })
   }
 
   onToggle({target}) {
-    if (!target.closest('ga-tag-option') ) {
+    if (!this.disabled && !target.closest('ga-tag-option') ) {
       this.toggle();
     }
   }

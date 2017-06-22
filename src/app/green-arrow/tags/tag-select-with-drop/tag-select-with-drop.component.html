@@ -5,7 +5,8 @@
       <span class="tags__remove glyphicon glyphicon-remove" (click)="opt.toggle()"></span>
     </ga-option>
     <a class="glyphicon  tags__chevron"
-      [ngClass]="{'glyphicon-chevron-down': !isExpanded, 'glyphicon-chevron-up': isExpanded}">
+       *ngIf="!disabled"
+       [ngClass]="{'glyphicon-chevron-down': !isExpanded, 'glyphicon-chevron-up': isExpanded}">
     </a>
   </div>
   <ng-template

@@ -17,7 +17,6 @@ export  class SelectionModel<T> {
     return this._selected;
   }
 
-
   onChange: Subject<SelectionChange<T>> =  new Subject();
 
   constructor(

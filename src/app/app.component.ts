@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 const  options = [1, 2, 3, 4, 5, 6, 7];
 
@@ -61,14 +61,19 @@ export class AppComponent implements  AfterViewInit{
     this.form = this._fb.group({
       text: ['', ValidationErrorService.getValidator(Validators.required, 'This field is required! ')],
       select: ['', ValidationErrorService.getValidator(Validators.required, 'This field is required! ')],
+      selectDisabled: [10],
       multiselect: [10],
       multiselectWithDrop: [options.slice(0, 2)],
+      multiselectWithDropDisabled: [options.slice(0, 2)],
       radioGroup: 'OR',
       parseInput: '',
       tagInput: [['test1']],
       tagInputDisabled: [['test1']]
     });
-    this.form.get('tagInputDisabled').disable()
+
+    this.form.get('tagInputDisabled').disable();
+    this.form.get('multiselectWithDropDisabled').disable();
+    this.form.get('selectDisabled').disable();
 
   }
 

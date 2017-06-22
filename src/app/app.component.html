@@ -19,6 +19,15 @@
     </ga-input-container>
 
 
+    <h2>Select disabled</h2>
+    <ga-input-container>
+      <ga-tag-select gaInput  formControlName="selectDisabled">
+        <ga-option [value]="10">10</ga-option>
+        <ga-option [value]="20">20</ga-option>
+      </ga-tag-select>
+    </ga-input-container>
+
+
     <h2>Multiselect</h2>
     <ga-tag-select [multiple]="true" formControlName="multiselect">
       <ga-option [value]="10">10</ga-option>
@@ -29,6 +38,17 @@
     <h2>Multiselect with drop</h2>
 
     <ga-tag-select-with-drop formControlName="multiselectWithDrop" [multiple]="true">
+      <ga-option *ngFor="let opt of options" [value]="opt">{{opt}}</ga-option>
+      <ga-tag-optgroup>
+        <div [gaCollapse]="isCollapsed">
+          <ga-option [value]="301">301</ga-option>
+        </div>
+        <a (click)="isCollapsed = !isCollapsed">{{ isCollapsed ? 'view all' : 'close' }}</a>
+      </ga-tag-optgroup>
+    </ga-tag-select-with-drop>
+    <h2>Multiselect with drop disabled</h2>
+
+    <ga-tag-select-with-drop formControlName="multiselectWithDropDisabled" [multiple]="true">
       <ga-option *ngFor="let opt of options" [value]="opt">{{opt}}</ga-option>
       <ga-tag-optgroup>
         <div [gaCollapse]="isCollapsed">
