@@ -19,7 +19,10 @@ export class GaRadioChange {
 @Component({
   selector: 'ga-radio-group',
   templateUrl: './radio-group.component.html',
-  styleUrls: ['./radio-group.component.scss']
+  styleUrls: ['./radio-group.component.scss'],
+  host: {
+    '[class.disabled]': '_disabled'
+  }
 })
 export class GaRadioGroupComponent implements ControlValueAccessor, OnInit, AfterContentInit{
   private _optionSubscription: Subscription;
@@ -78,6 +81,8 @@ export class GaRadioGroupComponent implements ControlValueAccessor, OnInit, Afte
   private _resetOptions(): void {
     this._dropSubscriptions();
     this._listenToOptions();
+
+    this.options.forEach(option => (option.disabled = this._disabled));
   }
 
   _dropSubscriptions() {
@@ -115,6 +120,7 @@ export class GaRadioGroupComponent implements ControlValueAccessor, OnInit, Afte
 
 
   setDisabledState(isDisabled: boolean) {
+    console.log(this._disabled)
     this._disabled = isDisabled;
   }
 

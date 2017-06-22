@@ -66,6 +66,7 @@ export class AppComponent implements  AfterViewInit{
       multiselectWithDrop: [options.slice(0, 2)],
       multiselectWithDropDisabled: [options.slice(0, 2)],
       radioGroup: 'OR',
+      radioGroupDisabled: 'OR',
       parseInput: '',
       tagInput: [['test1']],
       tagInputDisabled: [['test1']]
@@ -74,6 +75,7 @@ export class AppComponent implements  AfterViewInit{
     this.form.get('tagInputDisabled').disable();
     this.form.get('multiselectWithDropDisabled').disable();
     this.form.get('selectDisabled').disable();
+    this.form.get('radioGroupDisabled').disable();
 
   }
 
